@@ -11,7 +11,7 @@ public class Lender {
         availableFunds += value;
     }
 
-    public String qualify(Applicant applicant) {
-        return null;
+    public void setAvailableFunds(double availableFunds) {
+        this.availableFunds = availableFunds;
     }
 }

@@ -61,5 +61,46 @@ public class MortageLenderTest {
 
     }
 
+    @Test
+    public void whenPrecessRequest(){
+        mortageLenderService.depositFunds(100000);
+        Applicant applicant = new Applicant(21,700,100000);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant,125000);
+        Request result = mortageLenderService.qualify(request);
 
-}
+        mortageLenderService.processRequest(request);
+
+        assertTrue(result.getStatus().equals("on hold"));
+
+
+
+
+        mortageLenderService.depositFunds(100000);
+        mortageLenderService.addApplicant(applicant);
+        request = mortageLenderService.request(applicant,125000);
+        result = mortageLenderService.qualify(request);
+
+        mortageLenderService.processRequest(request);
+
+        assertTrue(result.getStatus().equals("approved"));
+        double availableFunds = mortageLenderService.checkAvailableFunds();
+
+        double expectedAvailableFunds = 75000;
+
+        assertEquals(expectedAvailableFunds, availableFunds);
+    }
+
+    @Test
+    public void whenPrecessNotQualifiedRequest() {
+        mortageLenderService.depositFunds(100000);
+        Applicant applicant = new Applicant(30,600,100000);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant,250000);
+        Request result = mortageLenderService.qualify(request);
+        String processRequest = mortageLenderService.processRequest(request);
+        assertTrue(processRequest.equals("This is a denied request"));
+    }
+
+
+    }
