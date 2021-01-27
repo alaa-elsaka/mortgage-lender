@@ -81,6 +81,7 @@ public class MortageLenderService {
             lender.updatePendingFunds(getPendingFunds()-request.getAmount());
         }else {
             applicant.reject(request);
+            lender.updatePendingFunds(getPendingFunds()-request.getAmount());
             lender.setAvailableFunds(checkAvailableFunds() + request.getAmount());
         }
     }
