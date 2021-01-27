@@ -102,5 +102,69 @@ public class MortageLenderTest {
         assertTrue(processRequest.equals("This is a denied request"));
     }
 
+    @Test
+    public void checkAvailablePendingFundsChanges() {
+        Applicant applicant = new Applicant(21,700,100000);
+        mortageLenderService.depositFunds(200000);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant,125000);
+        mortageLenderService.qualify(request);
+
+        mortageLenderService.processRequest(request);
+
+        double availableFunds = mortageLenderService.checkAvailableFunds();
+
+        double expectedAvailableFunds = 75000;
+
+        assertEquals(expectedAvailableFunds, availableFunds);
+        double pendingFunds = mortageLenderService.getPendingFunds();
+        double expectedPendingFunds = 125000;
+        assertEquals(expectedPendingFunds, pendingFunds);
+    }
+
+    @Test
+    public void checkApplicantAcceptsLoan() {
+        Applicant applicant = new Applicant(21,700,100000);
+        mortageLenderService.depositFunds(200000);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant,125000);
+        mortageLenderService.qualify(request);
+
+        mortageLenderService.processRequest(request);
+
+        mortageLenderService.accept(applicant,request,true);
+
+        double pendingFunds = mortageLenderService.getPendingFunds();
+        double expectedPendingFunds = 0;
+        String resultStatus = request.getStatus();
+        assertTrue("Accept".equals(resultStatus));
+        assertEquals(expectedPendingFunds,pendingFunds);
+
+    }
+
+    @Test
+    public void checkApplicantRejectsLoan() {
+        Applicant applicant = new Applicant(21,700,100000);
+        mortageLenderService.depositFunds(200000);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant,125000);
+        mortageLenderService.qualify(request);
+
+        mortageLenderService.processRequest(request);
+
+        mortageLenderService.accept(applicant,request,false);
+
+        double pendingFunds = mortageLenderService.getPendingFunds();
+        double expectedPendingFunds = 0;
+        String resultStatus = request.getStatus();
+        assertTrue("Rejected".equals(resultStatus));
+        assertEquals(expectedPendingFunds,pendingFunds);
+        double availableFunds = mortageLenderService.checkAvailableFunds();
+        double expectedAvailableFunds = 200000;
+        assertEquals(expectedAvailableFunds,availableFunds);
+
+    }
+
+
 
     }

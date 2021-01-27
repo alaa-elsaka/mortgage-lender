@@ -53,6 +53,10 @@ public class MortageLenderService {
         return request;
     }
 
+    public double getPendingFunds() {
+        return lender.getPendingFunds();
+    }
+
     public String processRequest(Request request) {
         if(request.getStatus().equals("denied"))
             return "This is a denied request";
@@ -64,8 +68,21 @@ public class MortageLenderService {
         else if(request.getStatus().equals("qualified") &&  request.getAmount() < checkAvailableFunds()){
             request.setStatus("approved");
             lender.setAvailableFunds(checkAvailableFunds() - request.getAmount());
+            lender.updatePendingFunds(getPendingFunds()+request.getAmount());
             return "Successfully processed";
         }
         return "";
+    }
+
+    public void accept(Applicant applicant, Request request,boolean accepted) {
+
+        if(accepted) {
+            applicant.accept(request);
+            lender.updatePendingFunds(getPendingFunds()-request.getAmount());
+        }else {
+            applicant.reject(request);
+            lender.updatePendingFunds(getPendingFunds()-request.getAmount());
+            lender.setAvailableFunds(checkAvailableFunds() + request.getAmount());
+        }
     }
 }

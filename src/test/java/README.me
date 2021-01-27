@@ -61,8 +61,10 @@ Then I should see a warning to not proceed
 
 
 Given I have approved a loan
-Then the requested loan amount is moved from available funds to pending funds
-And I see the available and pending funds reflect the changes accordingly
+Then the requested loan amount is moved from
+available funds to pending funds
+And I see the available and pending funds reflect
+the changes accordingly
 
 
 
@@ -70,7 +72,8 @@ And I see the available and pending funds reflect the changes accordingly
 
 Given I have an approved loan
 When the applicant accepts my loan offer
-Then the loan amount is removed from the pending funds
+Then the loan amount is removed from the pending
+funds
 And the loan status is marked as accepted
 
 Given I have an approved loan
@@ -92,3 +95,6 @@ And the loan status is marked as expired
 Given there are loans in my system
 When I search by loan status (qualified, denied, on hold, approved, accepted, rejected, expired)
 Then I should see a list of loans and their details
+
+
+Test
