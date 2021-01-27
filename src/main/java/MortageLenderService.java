@@ -2,13 +2,14 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MortageLenderService {
 
 
     private Lender lender = new Lender();
     List<Applicant> applicants = new ArrayList<>();
-    private Request request;
+    private List<Request> requests = new ArrayList<>();
 
     public double checkAvailableFunds() {
         return lender.getAvailableFunds();
@@ -51,7 +52,8 @@ public class MortageLenderService {
     }
 
     public Request request(Applicant applicant, double amount) {
-        request = new Request(applicant, amount);
+        Request request = new Request(applicant, amount);
+        requests.add(request);
         return request;
     }
 
@@ -99,5 +101,17 @@ public class MortageLenderService {
             lender.setAvailableFunds(checkAvailableFunds() + request.getAmount());
             lender.updatePendingFunds(getPendingFunds()-request.getAmount());
         }
+    }
+
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+    public List<Request> search(String status) {
+        List<Request> result =
+                requests.stream().filter(req -> req.getStatus()
+                        .equals(status))
+                        .collect(Collectors.toList());
+        return result;
     }
 }

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MortageLenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T22:00:27" hostname="DESKTOP-V6ARL4J" time="0.16">
+<testsuite name="MortageLenderTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2021-01-27T22:45:59" hostname="DESKTOP-V6ARL4J" time="0.582">
   <properties/>
-  <testcase name="checkLoadExpiration()" classname="MortageLenderTest" time="0.16"/>
+  <testcase name="whenPrecessNotQualifiedRequest()" classname="MortageLenderTest" time="0.308"/>
+  <testcase name="checkAvailablePendingFundsChanges()" classname="MortageLenderTest" time="0.079"/>
+  <testcase name="checkLoadExpiration()" classname="MortageLenderTest" time="0.012"/>
+  <testcase name="whenSearchLoansByStatus()" classname="MortageLenderTest" time="0.016"/>
+  <testcase name="whenDepositFunds()" classname="MortageLenderTest" time="0.007"/>
+  <testcase name="whenQualifyLoan()" classname="MortageLenderTest" time="0.005"/>
+  <testcase name="whenCheckAvailableFunds()" classname="MortageLenderTest" time="0.01"/>
+  <testcase name="checkApplicantAcceptsLoan()" classname="MortageLenderTest" time="0.004"/>
+  <testcase name="checkApplicantRejectsLoan()" classname="MortageLenderTest" time="0.003"/>
+  <testcase name="whenPrecessRequest()" classname="MortageLenderTest" time="0.036"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
