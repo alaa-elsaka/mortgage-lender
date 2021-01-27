@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +71,7 @@ public class MortageLenderService {
             request.setStatus("approved");
             lender.setAvailableFunds(checkAvailableFunds() - request.getAmount());
             lender.updatePendingFunds(getPendingFunds()+request.getAmount());
+            request.setApprovalDate(LocalDate.now());
             return "Successfully processed";
         }
         return "";
@@ -83,6 +86,18 @@ public class MortageLenderService {
             applicant.reject(request);
             lender.updatePendingFunds(getPendingFunds()-request.getAmount());
             lender.setAvailableFunds(checkAvailableFunds() + request.getAmount());
+        }
+    }
+
+    public void checkRequest(Request request, LocalDate futureDate){
+
+        long intervalDays = ChronoUnit.DAYS.between(
+                request.getApprovalDate(), futureDate);
+
+        if(intervalDays > 3){
+            request.setStatus("expired");
+            lender.setAvailableFunds(checkAvailableFunds() + request.getAmount());
+            lender.updatePendingFunds(getPendingFunds()-request.getAmount());
         }
     }
 }

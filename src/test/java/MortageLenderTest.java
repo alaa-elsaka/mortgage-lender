@@ -1,5 +1,10 @@
 import org.junit.jupiter.api.Test;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -163,6 +168,25 @@ public class MortageLenderTest {
         double expectedAvailableFunds = 200000;
         assertEquals(expectedAvailableFunds,availableFunds);
 
+    }
+
+    @Test
+    public void checkLoadExpiration() {
+        Applicant applicant = new Applicant(21, 700, 100000);
+        mortageLenderService.depositFunds(200000);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant, 125000);
+        mortageLenderService.qualify(request);
+
+        mortageLenderService.processRequest(request);
+        LocalDate futureDate = LocalDate.now().plusDays(4);
+
+        mortageLenderService.checkRequest(request, futureDate);
+
+        assertTrue(request.getStatus().equals("expired"));
+        double pendingFunds = mortageLenderService.getPendingFunds();
+        double expectedPendingFunds = 0;
+        assertEquals(expectedPendingFunds,pendingFunds);
     }
 
 

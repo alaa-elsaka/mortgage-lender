@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MortageLenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T21:02:02" hostname="LTUS135768" time="0.054">
+<testsuite name="MortageLenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T22:00:27" hostname="DESKTOP-V6ARL4J" time="0.16">
   <properties/>
-  <testcase name="checkApplicantRejectsLoan()" classname="MortageLenderTest" time="0.054"/>
+  <testcase name="checkLoadExpiration()" classname="MortageLenderTest" time="0.16"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
