@@ -74,4 +74,14 @@ public class MortageLenderService {
         return "";
     }
 
+    public void accept(Applicant applicant, Request request,boolean accepted) {
+
+        if(accepted) {
+            applicant.accept(request);
+            lender.updatePendingFunds(getPendingFunds()-request.getAmount());
+        }else {
+            applicant.reject(request);
+            lender.setAvailableFunds(checkAvailableFunds() + request.getAmount());
+        }
+    }
 }

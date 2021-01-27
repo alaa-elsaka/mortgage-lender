@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MortageLenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T20:24:37" hostname="LTUS135768" time="0.078">
+<testsuite name="MortageLenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T20:54:03" hostname="LTUS135768" time="0.069">
   <properties/>
-  <testcase name="checkAvailablePendingFundsChanges()" classname="MortageLenderTest" time="0.078"/>
+  <testcase name="checkApplicantAcceptsLoan()" classname="MortageLenderTest" time="0.069"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

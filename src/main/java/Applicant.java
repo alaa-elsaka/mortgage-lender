@@ -22,4 +22,12 @@ public class Applicant {
     public double getSavings() {
         return savings;
     }
+
+    public void accept(Request request) {
+        request.setStatus("Accept");
+    }
+
+    public void reject(Request request) {
+        request.setStatus("Rejected");
+    }
 }
