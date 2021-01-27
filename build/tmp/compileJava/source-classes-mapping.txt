@@ -1,6 +1,8 @@
-Applicant.java
- Applicant
 Lender.java
  Lender
+Applicant.java
+ Applicant
+Request.java
+ Request
 MortageLenderService.java
  MortageLenderService

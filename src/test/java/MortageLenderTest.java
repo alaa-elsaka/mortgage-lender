@@ -29,10 +29,36 @@ public class MortageLenderTest {
     @Test
     public void whenQualifyLoan(){
         Applicant applicant = new Applicant(21,700,100000);
-        applicant.submit(250000);
-        String result = mortageLenderService.qualify(applicant);
+        mortageLenderService.addApplicant(applicant);
+        Request request = mortageLenderService.request(applicant,250000);
+        Request result = mortageLenderService.qualify(request);
+        String statusResult = result.getStatus();
+        String qualificationResult = result.getQualification();
 
-        assertTrue(result.equals("qualified"));
+        assertTrue(statusResult.equals("qualified"));
+        assertTrue(qualificationResult.equals("qualified"));
+
+        applicant = new Applicant(30,700,50000);
+        mortageLenderService.addApplicant(applicant);
+         request = mortageLenderService.request(applicant,250000);
+         result = mortageLenderService.qualify(request);
+         statusResult = result.getStatus();
+         qualificationResult = result.getQualification();
+
+        assertTrue(statusResult.equals("qualified"));
+        assertTrue(qualificationResult.equals("partially qualified"));
+
+
+        applicant = new Applicant(30,600,100000);
+        mortageLenderService.addApplicant(applicant);
+        request = mortageLenderService.request(applicant,250000);
+        result = mortageLenderService.qualify(request);
+        statusResult = result.getStatus();
+        qualificationResult = result.getQualification();
+
+        assertTrue(statusResult.equals("denied"));
+        assertTrue(qualificationResult.equals("not qualified"));
+
     }
 
 
