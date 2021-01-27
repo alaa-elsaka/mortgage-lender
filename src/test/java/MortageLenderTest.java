@@ -1,9 +1,5 @@
 import org.junit.jupiter.api.Test;
-
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -216,14 +212,7 @@ public class MortageLenderTest {
         Request request4 = mortageLenderService.request(applicant4, 125000);
         Request request5 = mortageLenderService.request(applicant5, 125000);
         Request request6 = mortageLenderService.request(applicant6, 125000);
-/*
-        mortageLenderService.addRequest(request1);
-        mortageLenderService.addRequest(request2);
-        mortageLenderService.addRequest(request3);
-        mortageLenderService.addRequest(request4);
-        mortageLenderService.addRequest(request5);
-        mortageLenderService.addRequest(request6);
-*/
+
         mortageLenderService.qualify(request1);  //qualified
         mortageLenderService.qualify(request2);//qualified
         mortageLenderService.qualify(request3);  //qualified

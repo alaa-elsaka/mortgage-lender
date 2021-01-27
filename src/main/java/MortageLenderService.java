@@ -20,6 +20,7 @@ public class MortageLenderService {
         lender.depositFunds(value);
     }
 
+    //to do refactor
     public Request qualify(Request request) {
 
         if ((request.getApplicant().getDti() < 36) &&
@@ -46,6 +47,7 @@ public class MortageLenderService {
         return request;
     }
 
+    // to do refactor -- clone applicant object
     public void addApplicant(Applicant applicant) {
 
         applicants.add(applicant);
@@ -103,9 +105,6 @@ public class MortageLenderService {
         }
     }
 
-    public void addRequest(Request request) {
-        requests.add(request);
-    }
 
     public List<Request> search(String status) {
         List<Request> result =
