@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MortageLenderTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-01-27T18:50:59" hostname="DESKTOP-V6ARL4J" time="0.291">
+<testsuite name="MortageLenderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-27T20:24:37" hostname="LTUS135768" time="0.078">
   <properties/>
-  <testcase name="whenPrecessNotQualifiedRequest()" classname="MortageLenderTest" time="0.226"/>
-  <testcase name="whenDepositFunds()" classname="MortageLenderTest" time="0.011"/>
-  <testcase name="whenQualifyLoan()" classname="MortageLenderTest" time="0.005"/>
-  <testcase name="whenCheckAvailableFunds()" classname="MortageLenderTest" time="0.018"/>
-  <testcase name="whenPrecessRequest()" classname="MortageLenderTest" time="0.01"/>
+  <testcase name="checkAvailablePendingFundsChanges()" classname="MortageLenderTest" time="0.078"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

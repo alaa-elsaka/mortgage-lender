@@ -1,6 +1,8 @@
 public class Lender {
 
     private double availableFunds;
+    private double pendingFunds;
+
     public Lender() {   }
 
     public double getAvailableFunds() {
@@ -13,5 +15,13 @@ public class Lender {
 
     public void setAvailableFunds(double availableFunds) {
         this.availableFunds = availableFunds;
+    }
+
+    public double getPendingFunds() {
+        return this.pendingFunds;
+    }
+
+    public void updatePendingFunds(double value) {
+        this.pendingFunds = value;
     }
 }

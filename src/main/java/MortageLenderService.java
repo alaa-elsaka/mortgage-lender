@@ -53,6 +53,10 @@ public class MortageLenderService {
         return request;
     }
 
+    public double getPendingFunds() {
+        return lender.getPendingFunds();
+    }
+
     public String processRequest(Request request) {
         if(request.getStatus().equals("denied"))
             return "This is a denied request";
@@ -64,8 +68,10 @@ public class MortageLenderService {
         else if(request.getStatus().equals("qualified") &&  request.getAmount() < checkAvailableFunds()){
             request.setStatus("approved");
             lender.setAvailableFunds(checkAvailableFunds() - request.getAmount());
+            lender.updatePendingFunds(getPendingFunds()+request.getAmount());
             return "Successfully processed";
         }
         return "";
     }
+
 }
